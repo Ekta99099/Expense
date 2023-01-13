@@ -1,0 +1,57 @@
+﻿
+@model IEnumerable<Expense.Models.Addcategory>
+<h2>Index</h2>
+
+<p>
+
+    @Html.ActionLink("Create New", "Create")
+
+</p>
+
+<style id="t" style="color:darkblue">
+    .table {
+        background-color: lightgoldenrodyellow;
+    }
+
+    #t {
+        background-color: lightpink;
+        text-align:center;
+    }
+</style>
+
+<table class="table" border="1">
+    <tr id="t" style="color:darkblue" ;>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Cid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoryname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorylimit)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("Delete", "add_category", new { id = item.Cid }))
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cid)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoryname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categorylimit)
+                </td>
+
+            </tr>
+        }
+    }
+
+</table>

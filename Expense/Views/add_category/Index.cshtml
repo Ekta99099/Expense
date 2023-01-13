@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Expense.Models.Addcategory>
+@{
+    ViewBag.Title = "Index";
+
+}
+@Html.Raw(TempData["Deleted"])
+
+<h2>Index</h2>
+
+<style>
+    .table{
+        background-color:lightgoldenrodyellow;
+    }
+    #t{
+        background-color:lightpink;
+        text-align:center;
+    }
+    .add_category{
+        background-color:hotpink;
+    }
+  
+</style>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" border="1" style="color:blue;"  >
+    <tr id="t" style="color:darkblue";> 
+        <th>
+            @Html.DisplayNameFor(model => model.Cid) 
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Categoryname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categorylimit)
+        </th>
+       </tr>
+
+    @foreach (var item in Model)
+    {
+        using (Html.BeginForm("Delete", "add_category", new { id = item.Cid}))
+        {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Cid)
+    </td>
+
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Categoryname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Categorylimit)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Cid }) |
+        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete record with Category id=@item.Cid');"/>
+    </td>
+</tr>
+        }
+    }
+
+
+</table>
+
